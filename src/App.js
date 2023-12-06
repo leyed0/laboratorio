@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css"
+import { useState } from 'react';
+import SessionManager from './components/session/SessionManager';
+import AppNavbar from './components/AppNavbar';
+import Auth from './components/session/Auth';
+<script src="https://kit.fontawesome.com/7c9047c404.js" crossorigin="anonymous"></script>
 
 function App() {
+
+  const [session, setSession] = useState(false);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Auth />
+      {/* <AppNavbar activePage={'teste'}/>
+      <Login /> */}
     </div>
   );
 }
