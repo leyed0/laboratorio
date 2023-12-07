@@ -9,9 +9,9 @@ export default function ({setAuth}){
     const [message, setMessage] = useState('');
 
     const handleRegister = async () => {
-        console.log('handle');
-        try {
-          const response = await axios.post('http://backend/index.php', {
+      const backendURL = (window.location.hostname==="smkassist.com.br"?'https://smkassist.com.br/app/DB/index.php':'http://backend/index.php');
+      try {
+          const response = await axios.post(backendURL, {
             action: 'register',
             username: login,
             password: password,
@@ -32,38 +32,38 @@ export default function ({setAuth}){
             <div className="mt-3">
                 <label htmlFor="Email">Email: </label>
                 <input 
-                    type="email" 
-                    placeholder="Email" 
-                    id="Email" 
-                    className="form-control mt" 
-                    autoComplete="email" 
+                    type="email"
+                    placeholder="Email"
+                    id="Email"
+                    className="form-control mt"
+                    autoComplete="email"
                     onChange={e=>setEmail(e.target.value)}/>
             </div>
             
             <div className="mt-3">
                 <label htmlFor="login">Login: </label>
-                <input 
-                    type="text" 
-                    placeholder="Login" 
-                    id="login" 
-                    className="form-control mt" 
-                    autoComplete="login" 
+                <input
+                    type="text"
+                    placeholder="Login"
+                    id="login"
+                    className="form-control mt"
+                    autoComplete="login"
                     onChange={e=>setLogin(e.target.value)}/>
             </div>
 
             <div className="mt-3">
                 <label htmlFor="password">Password: </label>
-                <input 
-                    id="password" 
-                    type="password" 
-                    placeholder="Password" 
-                    className="form-control mt" 
-                    autoComplete="current-password" 
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="Password"
+                    className="form-control mt"
+                    autoComplete="current-password"
                     onChange={e=>setPassword(e.target.value)}/>
             </div>
 
             <div className="mt-3 gap-2 d-grid">
-                <button className="btn btn-primary" onClick={handleRegister}>Register</button>
+                <button disabled={login ==='' || password==='' || email ===''} className="btn btn-primary" onClick={handleRegister}>Register</button>
                 <button onClick={(e)=>setAuth("signin")} className="btn btn-secondary">Cancel</button>
             </div>
         </div>

@@ -12,17 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 
+echo '<p>Hello World</p>';
 
-header("Content-Type: application/json; charset=UTF-8");
-
-require_once(__DIR__ . '/routes/api.php');
-
-
-// If it's a preflight request, respond with 204 No Content
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(204);
-    exit();
-}
-
-
+echo "{$_SERVER['HTTP_HOST']}";
 ?>

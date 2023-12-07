@@ -10,10 +10,13 @@ export default function ({setAuth}) {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
 
+  // if (window.location.hostname === "smkassist.com.br") {
+
   const handleLogin = async () => {
-    console.log('handle');
+    const backendURL = (window.location.hostname==="smkassist.com.br"?'https://smkassist.com.br/app/DB/index.php':'http://backend/index.php');
     try {
-      const response = await axios.post('http://backend/index.php', {
+      const response = await axios.post(backendURL, {
+        
         action: 'login',
         username: username,
         password: password,
@@ -49,7 +52,7 @@ export default function ({setAuth}) {
                 onChange={(e) => setPassword(e.target.value)} />
           </div>
           <div className="mt-3 d-grid gap-2">
-              <button className="btn btn-primary" onClick={handleLogin}>Login</button>
+              <button disabled={username === '' || password===''} className="btn btn-primary" onClick={handleLogin}>Login</button>
               <button onClick={(e)=>setAuth("signup")} className="btn btn-secondary">Register</button>
           </div>
       </div>
