@@ -19,16 +19,16 @@ class UserModel {
         $this->conn = $conn;
     }
 
-    public function registerUser($username, $password, $email) {
+    public function registerUser($login, $password, $email) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-        $stmt = $this->conn->prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)");
-        $stmt->execute([$username, $hashedPassword, $email]);
+        $stmt = $this->conn->prepare("INSERT INTO users (login, password, email) VALUES (?, ?, ?)");
+        $stmt->execute([$login, $hashedPassword, $email]);
     }
 
-    public function loginUser($username, $password) {
-        $stmt = $this->conn->prepare("SELECT * FROM users WHERE username = ?");
-        $stmt->execute([$username]);
+    public function loginUser($login, $password) {
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE login = ?");
+        $stmt->execute([$login]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['password'])) {

@@ -3,7 +3,7 @@ import Login from "./Login"
 import Register from "./Register"
 import "../css/Auth.css"
 //backend/api
-export default function (props) {
+export default function ({appData, setAppData}) {
   let [authMode, setAuthMode] = useState("signin") //signin / signup
 
   if (authMode === "signin") {
@@ -11,7 +11,7 @@ export default function (props) {
       <div className="Auth-form-container">
         <div className="Auth-form">
             <div className="Auth-form-content">
-                <Login setAuth = {setAuthMode}/>
+                <Login setAuth = {setAuthMode} appData={appData} setAppData={setAppData}/>
             </div>
         </div>
       </div>

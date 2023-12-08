@@ -13,7 +13,7 @@ export default function ({setAuth}){
       try {
           const response = await axios.post(backendURL, {
             action: 'register',
-            username: login,
+            login: login,
             password: password,
             email:email,
           });

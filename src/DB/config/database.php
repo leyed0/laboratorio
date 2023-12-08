@@ -11,11 +11,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
+// if ("{$_SERVER['HTTP_HOST']}" == "backend") {
+//     $servername = "sql10.freemysqlhosting.net";
+//     $username = "sql10665879";
+//     $password = "lJBMYbGmu1";
+//     $dbname = "sql10665879";
+// }
 if ("{$_SERVER['HTTP_HOST']}" == "backend") {
-    $servername = "sql10.freemysqlhosting.net";
-    $username = "sql10665879";
-    $password = "lJBMYbGmu1";
-    $dbname = "sql10665879";
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "teste";
 }
 
 if ("{$_SERVER['HTTP_HOST']}" == "smkassist.com.br") {

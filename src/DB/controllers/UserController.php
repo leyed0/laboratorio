@@ -25,24 +25,24 @@ class UserController {
 
     public function register($data) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = $data['username'];
+            $login = $data['login'];
             $password = $data['password'];
             $email = $data['email'];
 
-            $this->userModel->registerUser($username, $password, $email);
+            $this->userModel->registerUser($login, $password, $email);
             echo json_encode(['status' => 'success', 'message' => 'User registered successfully']);
         }
     }
 
     public function login($data) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = $data['username'];
+            $login = $data['login'];
             $password = $data['password'];
 
-            if ($this->userModel->loginUser($username, $password)) {
+            if ($this->userModel->loginUser($login, $password)) {
                 echo json_encode(['status' => 'success', 'message' => 'Login successful']);
             } else {
-                echo json_encode(['status' => 'error', 'message' => 'Invalid username or password']);
+                echo json_encode(['status' => 'error', 'message' => 'Invalid login or password']);
             }
         }
     }

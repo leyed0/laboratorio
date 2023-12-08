@@ -1,16 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function ({setAuth}) {
+export default function ({setAuth, appData, setAppData}) {
 
-  const [username, setUsername] = useState('');
+  const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [user, setUser] = useState(null); // Track user data
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
-
-  // if (window.location.hostname === "smkassist.com.br") {
 
   const handleLogin = async () => {
     const backendURL = (window.location.hostname==="smkassist.com.br"?'https://smkassist.com.br/app/DB/index.php':'http://backend/index.php');
@@ -18,14 +16,17 @@ export default function ({setAuth}) {
       const response = await axios.post(backendURL, {
         
         action: 'login',
-        username: username,
+        login: login,
         password: password,
       });
-      console.log(response.data);
-      setMessage(response.data.message );
+      if (response.data.status === 'success') {
+        setAppData({...appData,auth:{...appData.auth,isAuthenticated:true}, activePage: 'home'});
+        console.log(appData.activePage);
+      }
     } catch (error) {
       console.log('catch');
       setMessage('Login failed');
+      console.log(error);
     }
   };
 
@@ -40,7 +41,7 @@ export default function ({setAuth}) {
                 type="text" 
                 placeholder="Login" 
                 className="form-control mt" 
-                onChange={(e) => setUsername(e.target.value)} />
+                onChange={(e) => setLogin(e.target.value)} />
           </div>
           <div className="mt-3">
               <label htmlFor="password">Password: </label>
@@ -52,7 +53,7 @@ export default function ({setAuth}) {
                 onChange={(e) => setPassword(e.target.value)} />
           </div>
           <div className="mt-3 d-grid gap-2">
-              <button disabled={username === '' || password===''} className="btn btn-primary" onClick={handleLogin}>Login</button>
+              <button disabled={login === '' || password===''} className="btn btn-primary" onClick={handleLogin}>Login</button>
               <button onClick={(e)=>setAuth("signup")} className="btn btn-secondary">Register</button>
           </div>
       </div>
