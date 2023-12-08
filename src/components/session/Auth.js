@@ -2,9 +2,9 @@ import React, { useState } from "react"
 import Login from "./Login"
 import Register from "./Register"
 import "../css/Auth.css"
-//backend/api
+
 export default function ({appData, setAppData}) {
-  let [authMode, setAuthMode] = useState("signin") //signin / signup
+  let [authMode, setAuthMode] = useState("signin")
 
   if (authMode === "signin") {
     return (
@@ -22,7 +22,7 @@ export default function ({appData, setAppData}) {
       <div className="Auth-form-container">
         <div className="Auth-form">
             <div className="Auth-form-content">
-                <Register setAuth = {setAuthMode}/>
+                <Register setAuth = {setAuthMode} appData={appData} setAppData={setAppData}/>
             </div>
         </div>
       </div>

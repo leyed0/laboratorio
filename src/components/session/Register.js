@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function ({setAuth}){
 
-    const [email, setEmail] = useState(''); // Track user data
+    const [email, setEmail] = useState('');
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');

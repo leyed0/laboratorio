@@ -6,7 +6,7 @@ export default function({appData, setAppData}){
     return(
         <div>
             Home Page
-            <button onClick={setAppData({...appData, activePage: 'about'})}>clicks</button>
+            <button onClick={()=>setAppData({...appData, activePage: 'about'})}>clicks</button>
         </div>
     )
 }

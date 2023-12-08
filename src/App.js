@@ -7,12 +7,9 @@ import AppNavbar from './components/AppNavbar';
 <script src="https://kit.fontawesome.com/7c9047c404.js" crossorigin="anonymous"></script>
 
 function App() {
-
   return (
     <div className="App">
       <SessionManager />
-      {/* <AppNavbar activePage={'teste'}/>
-      <Login /> */}
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Auth from './session/Auth';
 import Home from "./pages/Home";
 import About from "./pages/About";
+import AppNavbar from "./AppNavbar";
 
 export default function(){
     const[appData, setAppData] = useState({
@@ -25,25 +26,33 @@ export default function(){
     );
 
     console.log(appData);
-    if(appData.activePage==='auth' || !appData.auth.isAuthenticated) return <Auth appData={appData} setAppData={setAppData} />
-    
-    switch (appData.activePage) {
-        case 'home':
-            return <Home appData={appData} setAppData={setAppData} />
-            break;
 
-        case 'about':
-            return <About appData={appData} setAppData={setAppData}/>
-            break;
-        default:
-            break;
+    function renderNav(){
+        if(appData.auth.isAuthenticated) return <AppNavbar />;
     }
 
+    function renderPage(){
+        switch (appData.activePage) {
+            case 'auth':
+                return <Auth appData={appData} setAppData={setAppData} />;
+                break;
+            case 'home':
+                return <Home appData={appData} setAppData={setAppData} />;
+                break;
+    
+            case 'about':
+                return <About appData={appData} setAppData={setAppData}/>;
+                break;
+            default:
+                break;
+        }
+    }
     
 
     return(
         <div>
-            <h1>Manager</h1>
+            {renderNav()}
+            {renderPage()}
         </div>
     );
 }

@@ -6,7 +6,7 @@ export default function ({setAuth, appData, setAppData}) {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [loginSuccess, setLoginSuccess] = useState(false);
-  const [user, setUser] = useState(null); // Track user data
+  const [user, setUser] = useState(null);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
 
