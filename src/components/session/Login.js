@@ -20,7 +20,7 @@ export default function ({setAuth, appData, setAppData}) {
         password: password,
       });
       if (response.data.status === 'success') {
-        setAppData({...appData,auth:{...appData.auth,isAuthenticated:true}, activePage: 'home'});
+        setAppData(prevState => ({ ...prevState, auth: { ...prevState.auth, isAuthenticated: true }, activePage: 'home' }));
         console.log(appData.activePage);
       }
     } catch (error) {
@@ -50,13 +50,14 @@ export default function ({setAuth, appData, setAppData}) {
                 type="password" 
                 placeholder="Password" 
                 className="form-control mt" 
-                onChange={(e) => setPassword(e.target.value)} />
+                onChange={(e) =>  setPassword(e.target.value)} />
+                {/* onChange={(e) =>  setAppData(prevState => ({ ...prevState, auth: { ...prevState.auth, uset: {...prevState.auth.user,login:`teste`, password:e.target.value}}}))} */}
+
           </div>
           <div className="mt-3 d-grid gap-2">
               <button disabled={login === '' || password===''} className="btn btn-primary" onClick={handleLogin}>Login</button>
               <button onClick={(e)=>setAuth("signup")} className="btn btn-secondary">Register</button>
           </div>
       </div>
-      
   );
 }
