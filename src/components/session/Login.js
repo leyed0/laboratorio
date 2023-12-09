@@ -20,8 +20,8 @@ export default function ({setAuth, appData, setAppData}) {
         password: password,
       });
       if (response.data.status === 'success') {
-        setAppData(prevState => ({ ...prevState, auth: { ...prevState.auth, isAuthenticated: true }, activePage: 'home' }));
-        console.log(appData.activePage);
+        setAppData(prevState => ({ ...prevState, auth: { ...prevState.auth, user:{...prevState.auth.user, login:login, password:password}, isAuthenticated: true }, activePage: 'home' }));
+        // console.log(appData.activePage);
       }
     } catch (error) {
       console.log('catch');

@@ -25,7 +25,10 @@ export default function(){
         }
     );
 
-    console.log(appData);
+    useEffect(() => {
+      console.log(appData);
+    }, [appData]);
+    
 
     function renderNav(){
         if(appData.auth.isAuthenticated) return <AppNavbar />;

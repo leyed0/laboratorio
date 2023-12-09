@@ -17,11 +17,10 @@ export default function ({setAuth}){
             password: password,
             email:email,
           });
-          console.log(response.data);
+          if(response.data.status != 'success') throw 'error';
           setMessage(response.data.message );
         } catch (error) {
-          console.log('catch');
-          setMessage('Login failed');
+          setMessage('Register failed');
         }
       };
 
@@ -62,9 +61,13 @@ export default function ({setAuth}){
                     onChange={e=>setPassword(e.target.value)}/>
             </div>
 
+            <div>
+              {message}
+            </div>
+
             <div className="mt-3 gap-2 d-grid">
                 <button disabled={login ==='' || password==='' || email ===''} className="btn btn-primary" onClick={handleRegister}>Register</button>
-                <button onClick={(e)=>setAuth("signin")} className="btn btn-secondary">Cancel</button>
+                <button onClick={(e)=>setAuth("signin")} className="btn btn-secondary">Login</button>
             </div>
         </div>
     )

@@ -1,0 +1,1 @@
+powershell -file list.ps1
