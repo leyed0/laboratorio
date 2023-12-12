@@ -3,6 +3,7 @@ import Auth from './session/Auth';
 import Home from "./pages/Home";
 import About from "./pages/About";
 import AppNavbar from "./AppNavbar";
+import Profile from "./pages/Profile";
 
 export default function(){
     const[appData, setAppData] = useState({
@@ -41,6 +42,9 @@ export default function(){
                 break;
             case 'home':
                 return <Home appData={appData} setAppData={setAppData} />;
+                break;
+            case 'home':
+                return <Profile appData={appData} setAppData={setAppData} />;
                 break;
     
             case 'about':

@@ -3,13 +3,15 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import { useState } from 'react';
 import SessionManager from './components/SessionManager';
 import AppNavbar from './components/AppNavbar';
+import Profile from './components/pages/Profile';
 
 <script src="https://kit.fontawesome.com/7c9047c404.js" crossorigin="anonymous"></script>
 
 function App() {
   return (
     <div className="App">
-      <SessionManager />
+      <Profile />
+      {/* <SessionManager /> */}
     </div>
   );
 }
