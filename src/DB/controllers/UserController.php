@@ -39,10 +39,12 @@ class UserController {
             $login = $data['login'];
             $password = $data['password'];
 
-            if ($this->userModel->loginUser($login, $password)) {
-                echo json_encode(['status' => 'success', 'message' => 'Login successful']);
+            $login = $this->userModel->loginUser($login, $password);
+
+            if ($login[0]) {
+                echo json_encode(['status' => 'success', 'userData' => $login[1]]);
             } else {
-                echo json_encode(['status' => 'error', 'message' => 'Invalid login or password']);
+                echo json_encode(['status' => 'error', 'message' => $login[1]]);
             }
         }
     }

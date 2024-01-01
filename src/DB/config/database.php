@@ -4,19 +4,6 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 header('Access-Control-Allow-Headers: Content-Type');
 header('Access-Control-Allow-Credentials: true');
 
-// Handle preflight requests
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-    header("Access-Control-Allow-Headers: Content-Type, Authorization");
-    exit(0);
-}
-
-// if ("{$_SERVER['HTTP_HOST']}" == "backend") {
-//     $servername = "sql10.freemysqlhosting.net";
-//     $username = "sql10665879";
-//     $password = "lJBMYbGmu1";
-//     $dbname = "sql10665879";
-// }
 if ("{$_SERVER['HTTP_HOST']}" == "backend") {
     $servername = "localhost";
     $username = "root";
@@ -32,9 +19,11 @@ if ("{$_SERVER['HTTP_HOST']}" == "smkassist.com.br") {
 }
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) { 
+        die("Connection failed: " . $conn->connect_error); 
+    } 
+} catch (Exception $e) {
     echo "Connection failed: " . $e->getMessage();
 }
 

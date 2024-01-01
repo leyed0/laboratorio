@@ -27,17 +27,17 @@
   -- Estrutura para tabela `contratação`
   --
 
-  DROP TABLE IF EXISTS `contratação`;
-  CREATE TABLE IF NOT EXISTS `contratação` (
+  DROP TABLE IF EXISTS `contratacao`;
+  CREATE TABLE IF NOT EXISTS `contratacao` (
     `ID` int NOT NULL AUTO_INCREMENT,
     `Dia` int NOT NULL,
     `Pessoa` int NOT NULL,
     `Cargo` varchar(100) NOT NULL,
     `Chefe` int NOT NULL,
     PRIMARY KEY (`ID`),
-    KEY `Contratação_fk0` (`Dia`),
-    KEY `Contratação_fk1` (`Pessoa`),
-    KEY `Contratação_fk2` (`Chefe`)
+    KEY `Contratacao_fk0` (`Dia`),
+    KEY `Contratacao_fk1` (`Pessoa`),
+    KEY `Contratacao_fk2` (`Chefe`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
   -- --------------------------------------------------------
@@ -50,7 +50,7 @@
   CREATE TABLE IF NOT EXISTS `dia_evento` (
     `ID` int NOT NULL AUTO_INCREMENT,
     `Evento` int NOT NULL,
-    `IngressosPré` int NOT NULL,
+    `IngressosPre` int NOT NULL,
     `IngressosDia` int NOT NULL,
     `IngressosTotal` int NOT NULL,
     `Data` date NOT NULL,
@@ -64,8 +64,8 @@
   -- Estrutura para tabela `endereço`
   --
 
-  DROP TABLE IF EXISTS `endereço`;
-  CREATE TABLE IF NOT EXISTS `endereço` (
+  DROP TABLE IF EXISTS `endereco`;
+  CREATE TABLE IF NOT EXISTS `endereco` (
     `ID` int NOT NULL AUTO_INCREMENT,
     `Nome` varchar(50) NOT NULL,
     `CEP` varchar(10) NOT NULL,
@@ -88,7 +88,7 @@
   CREATE TABLE IF NOT EXISTS `evento` (
     `ID` int NOT NULL AUTO_INCREMENT,
     `Local` int NOT NULL,
-    `Edição` varchar(60) NOT NULL,
+    `Edicao` varchar(60) NOT NULL,
     `IngressosTotal` int NOT NULL,
     PRIMARY KEY (`ID`),
     KEY `Evento_fk0` (`Local`)
@@ -126,20 +126,20 @@
     `Email` varchar(60) NOT NULL,
     `Telefone` varchar(9) NOT NULL,
     `Nascimento` date NOT NULL,
-    `Endereço` int NOT NULL,
+    `Endereco` int NOT NULL,
     `Criado` datetime NOT NULL,
     `UltLogin` datetime NOT NULL,
     `Desde` datetime NOT NULL,
-    `Permissões` text NOT NULL,
+    `Permissoes` text NOT NULL,
     PRIMARY KEY (`ID`),
     UNIQUE KEY `ID` (`ID`),
     UNIQUE KEY `Login` (`Login`),
     UNIQUE KEY `Email` (`Email`),
-    KEY `Usuario_fk0` (`Endereço`)
+    KEY `Usuario_fk0` (`Endereco`)
   ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 
-INSERT INTO `usuario` (`ID`, `Login`, `Senha`, `Nome`, `CPF`, `Genero`, `Email`, `Telefone`, `Nascimento`, `Endereço`, `Criado`, `UltLogin`, `Desde`, `Permissões`) VALUES
+INSERT INTO `usuario` (`ID`, `Login`, `Senha`, `Nome`, `CPF`, `Genero`, `Email`, `Telefone`, `Nascimento`, `Endereco`, `Criado`, `UltLogin`, `Desde`, `Permissoes`) VALUES
 (2, 'leyed', '$2y$10$fm8FKZ2NfEO3YEkTmW8M6uHMIVCbhwvG8ICtg/hxJ1gSSCVWY5BAq', '', '', '', 'leyed94@gmail.com', '', '1994-08-12', 0, '2023-12-18 22:24:10', '2023-12-21 23:46:32', '2023-12-18 22:24:10', ''),
 (5, 'smkassist', '$2y$10$V0R5p8GsGCiGaGZkW1Th0.7Cy4yhpaxI7Gmsw4vX7ykh/HvF9Yd5a', '', '', '', 'smkassist@gmail.com', '', '1994-08-12', 0, '2023-12-21 23:16:14', '2023-12-22 01:27:57', '2023-12-21 23:16:14', ''),
 (6, 'tixa', '$2y$10$P3t.IwIP5HzFfxQfmvujaOg1NbYq4wBoma4BWfWLASV/VaNp7Wk96', '', '', '', 'larissajurupin@gmail.com', '', '1994-08-12', 0, '2023-12-21 23:16:22', '2023-12-22 01:27:57', '2023-12-21 23:16:22', ''),

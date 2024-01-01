@@ -6,17 +6,30 @@ import AppNavbar from "./AppNavbar";
 import Profile from "./pages/Profile";
 
 export default function(){
+
+    const PERMISSIONS = {
+        SEE_USERS: 1, EDIT_USERS_INFO: 2, EDIT_USERS_PASSWORD: 4
+    }
+
     const[appData, setAppData] = useState({
         auth: {
             user:{
-                login:'',
-                email:'',
-                password:'',
-                name:'',
-                role:'',
+                ID:'',
+                Login:'',
+                Senha:'',
+                Nome:'',
+                CPF:'',
+                Genero:'',
+                Email:'',
+                Telefone:'',
+                Nascimento:'',
+                Endereco:'',
+                Criado:'',
+                UltLogin:'',
+                Desde:'',
+                Permissoes:'',
             },
             isAuthenticated:false,
-            lastAuth:0,
         },
         activePage:'auth',
         isLoading:false,
@@ -27,15 +40,15 @@ export default function(){
     );
 
     useEffect(() => {
-      console.log(appData);
+      console.log(['Effect: ', appData]);
     }, [appData]);
-    
 
     function renderNav(){
-        if(appData.auth.isAuthenticated) return <AppNavbar />;
+        if(appData.auth.isAuthenticated) return <AppNavbar appData={appData} setAppData={setAppData} />;
     }
 
     function renderPage(){
+        const testesss = PERMISSIONS.EDIT_USERS_INFO | PERMISSIONS.EDIT_USERS_PASSWORD;
         switch (appData.activePage) {
             case 'auth':
                 return <Auth appData={appData} setAppData={setAppData} />;
@@ -46,6 +59,9 @@ export default function(){
             case 'home':
                 return <Profile appData={appData} setAppData={setAppData} />;
                 break;
+            case 'profile':
+                return <Profile appData={appData} setAppData={setAppData} />;
+                break;
     
             case 'about':
                 return <About appData={appData} setAppData={setAppData}/>;
@@ -54,7 +70,6 @@ export default function(){
                 break;
         }
     }
-    
 
     return(
         <div>

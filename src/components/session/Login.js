@@ -14,22 +14,23 @@ export default function ({setAuth, appData, setAppData}) {
     const backendURL = (window.location.hostname==="smkassist.com.br"?'https://smkassist.com.br/app/DB/index.php':'http://backend/index.php');
     try {
       const response = await axios.post(backendURL, {
-        
         action: 'login',
         login: login,
         password: password,
       });
+      console.log(response.data);
       if (response.data.status === 'success') {
-        setAppData(prevState => ({ ...prevState, auth: { ...prevState.auth, user:{...prevState.auth.user, login:login, password:password}, isAuthenticated: true }, activePage: 'home' }));
-        // console.log(appData.activePage);
+        setAppData(prevState => ({ ...prevState, auth: { ...prevState.auth, user:response.data.userData, isAuthenticated: true, lastAuth: new Date().toLocaleString() }, activePage: 'home' }));
+      }
+      else{
+        console.log(response.data);
+        console.log('API else');
       }
     } catch (error) {
-      console.log('catch');
-      setMessage('Login failed');
+      setMessage('Backend Error!');
       console.log(error);
     }
   };
-
 
   return(
       <div>
